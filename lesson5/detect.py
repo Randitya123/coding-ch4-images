@@ -6,7 +6,7 @@ at=cv2.cvtColor(dt,cv2.COLOR_BGR2GRAY)
 #making the image a little blurry
 blurese=cv2.blur(at,(3,3))
 #detetcting circle
-circ=cv2.HoughCircles(blurese,cv2.HOUGH_GRADIENT,1,12,param1=50,param2=30,minRadius=10,maxRadius=80)
+circ=cv2.HoughCircles(blurese,cv2.HOUGH_GRADIENT,1,12,param1=50,param2=30,minRadius=10,maxRadius=30)
 if circ is not None:
     circ=np.uint16(np.around(circ))
     for i in circ[0,:]:
