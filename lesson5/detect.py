@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-dt=cv2.imread("eye.webp",1)
+dt=cv2.imread("eyes.jpg",1)
 at=cv2.cvtColor(dt,cv2.COLOR_BGR2GRAY)
 #making the image a little blurry
 blurese=cv2.blur(at,(3,3))
