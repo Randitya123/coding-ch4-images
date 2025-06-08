@@ -4,13 +4,13 @@ import numpy as np
 dt=cv2.imread("circle.png",0)
 rules=cv2.SimpleBlobDetector_Params()
 rules.filterByArea=True
-rules.minArea=50
+rules.minArea=35
 rules.filterByCircularity=True
 rules.minCircularity=0.9
 rules.filterByConvexity=True
-rules.minConvexity=0.3
+rules.minConvexity=0.2
 rules.filterByInertia=True
-rules.minInertiaRatio=0.03
+rules.minInertiaRatio=0.01
 #creating a detector with paramenters
 det=cv2.SimpleBlobDetector_create(rules)
 keypoints=det.detect(dt)
