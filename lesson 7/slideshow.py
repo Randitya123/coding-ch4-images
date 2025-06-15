@@ -35,4 +35,10 @@ def vg():
         if i.endswith(".jpeg") or i.endswith("jpg"):
             imagess.append(i)
     print(imagess)
+    frame=cv2.imread(os.path.join(".", imagess[0]))
+    height,width,layers=frame.shape
+    video=cv2.VideoWriter(nameoffile,0,1,(width,height))
+    for rt in imagess:
+        video.write(cv2.imread(os.path.join(".",rt)))
+    video.release()
 vg()
