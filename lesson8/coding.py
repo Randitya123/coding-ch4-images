@@ -11,14 +11,15 @@ for dt in range(60):
     value,bg=open.read()
     if value==False:
         continue
-bg=np.flip(bg,axis=1)
+    bg=cv2.rotate(bg,cv2.ROTATE_90_COUNTERCLOCKWISE)
+
 #framebyframeread
 while(open.isOpened()):
     value,img=open.read()
     if value==False:
         break
     counter+=1
-    img=np.flip(img,axis=1)
+    img=cv2.rotate(img,cv2.ROTATE_90_COUNTERCLOCKWISE)
     #changing the colors
     color=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
     #detecting range of red
