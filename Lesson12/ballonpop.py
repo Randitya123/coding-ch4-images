@@ -24,9 +24,18 @@ while True:
     frame=frame1.copy()
     #drawing the unpoped ballons
     for i in list1:
-        if not list1['popped']:
-            cv2.circle(frame,(list1['x'],list1['y']),list1['r'],(49,90,84),-1)
-
-
+        if not i['popped']:
+            cv2.circle(frame,(i['x'],i['y']),i['r'],(49,90,84),-1)
+    for k in contours:
+        if cv2.contourArea(k)<1500:
+            continue
+        x,y,w,h=cv2.boundingRect(k)
+        center=(x+w // 2,y+h // 2)
+        cv2.rectangle(frame,(x,y,y+h),(255,255,0),2)
+        for i in list1:
+            if not i['popped']:
+                distance=np.linalg.norm(np,array(center)-np.array((i['x'],i['y'])))
+                
+    cv2.imshow("title",frame)
 
 
