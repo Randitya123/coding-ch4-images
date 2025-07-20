@@ -1,5 +1,6 @@
-import cv2,numpy as np
-cascade=cv2.CascadeClassifier(cv2.data.haarcascades+"facedet.xml")
+import cv2,numpy as np, os
+cascade=cv2.CascadeClassifier(r"C:\Users\KIKE\OneDrive\Desktop\Coding ch4\lesson 11\facedet.xml")
+#print(os.path,exists(cv2.data.haarcascades+"facedet.xml"))
 glassesimg=cv2.imread("glass.png",cv2.IMREAD_UNCHANGED)
 height,width=glassesimg.shape[:2]
 aspectratio=width/height
