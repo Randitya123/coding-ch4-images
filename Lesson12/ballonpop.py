@@ -5,7 +5,7 @@ ret,frame1=capture.read()
 ret,frame2=capture.read()
 
 list1=[]
-totalballons=100
+totalballons=10
 score=0
 
 for i in range(totalballons):
@@ -31,11 +31,27 @@ while True:
             continue
         x,y,w,h=cv2.boundingRect(k)
         center=(x+w // 2,y+h // 2)
-        cv2.rectangle(frame,(x,y,y+h),(255,255,0),2)
+        cv2.rectangle(frame,(x,y),(x+w,y+h),(255,255,0),2)
         for i in list1:
             if not i['popped']:
-                distance=np.linalg.norm(np,array(center)-np.array((i['x'],i['y'])))
-                
+                distance=np.linalg.norm(np.array(center)-np.array((i['x'],i['y'])))
+                if distance<i["r"]+10:
+                    i["popped"]=True
+                    score+=1
+    cv2.putText(frame,f"Score:{score}",(10,30),font,1,(20,123,178))
     cv2.imshow("title",frame)
-
-
+    frame1=frame2
+    ret,frame2=capture.read()
+    key=cv2.waitKey(30)
+    if key==27:
+        break
+    elif key==ord('r'):
+        list1=[]
+        score=0
+        for i in range(totalballons):
+            xballon=random.randint(100,500)
+            yballon=random.randint(100,500)
+            radius=random.randint(30,50)
+            list1.append({'x':xballon,'y':yballon,"r":radius,'popped':False})
+capture.release()
+cv2.destroyAllWindows()
